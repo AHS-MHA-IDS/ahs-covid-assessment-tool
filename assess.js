@@ -1,6 +1,3 @@
-var ahsScript = $('<sc' +'ript>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({"gtm.start":new Date().getTime(),event:"gtm.js"});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src="https://www.googletagmanager.com/gtm.js?id="+i+dl;f.parentNode.insertBefore(j,f);})(window,document,"script","dataLayer","GTM-TGMJ8G5");</scr' + 'ipt>');
-$('head').append(ahsScript);
-
 $(document).ready(function(){
     
     //logging
@@ -20,64 +17,6 @@ $(document).ready(function(){
         Q8: null,
         Q9: null
     };
-
-    /* ---------- Global Variables for Storing Answers ---------- */ 
-    // Start Submit and Validate    
-    /*
-    var submitted = false;
-
-    function submitAssessment() {
-        if (submitted) {
-            return;
-        }
-        
-        submitted = true;
-            
-        assessment.FirstName = $('#inputFirstName').val();
-        assessment.LastName = $('#inputLastName').val();
-        assessment.PhoneNumber = $('#inputTelephone').val();
-        assessment.City = $('#inputCity').val();
-        assessment.HealthCareNumber = $('#inputHealthcareNo').val();
-
-        $.ajax({
-            type: "POST",
-            data: JSON.stringify(assessment),
-            url: "/COVIDServicePOST/api/assessment",
-            contentType: "application/json",
-            success: function (data) { successFunction(data); },
-            error: function (data) { errorFunction(data); }
-        });
-    };
-    
-    function successFunction(data) {
-        window.location = "/Journey/COVID-19/Pages/Success.aspx";
-    };
-    
-    function errorFunction(data) {
-        window.location = "/Journey/COVID-19/Pages/Error.aspx";
-    };
-    
-    $('#inputFirstName').on('keyup change', validateInputs);
-    $('#inputLastName').on('keyup change', validateInputs);
-    $('#inputTelephone').on('keyup change', validateInputs);
-    $('#inputCity').on('keyup change', validateInputs);
-    $('#inputHealthcareNo').on('keyup change', validateInputs);
-    
-    function isBlank(str) {
-        return (!str || /^\s*$/.test(str));
-    };
-    
-    function validateInputs() {
-        var valid = !isBlank($('#inputFirstName').val()) &&
-                    !isBlank($('#inputLastName').val()) &&
-                    !isBlank($('#inputTelephone').val()) &&
-                    !isBlank($('#inputCity').val()) &&
-                    !isBlank($('#inputHealthcareNo').val());
-        
-        $('#submitButton').prop("disabled", !valid);
-    }
-    */
-    // End Submit and Validate
 
 
 /* ---------- Global Variables for Storing Answers ---------- */ 

@@ -1,0 +1,193 @@
+<html>
+<head>
+    <script>
+    var formCode = "FLEX";
+    </script>
+    
+    <link type="text/css" rel="stylesheet" href="https://www.albertahealthservices.ca/css/theme.min.css">
+    <link type="text/css" rel="stylesheet" href="https://www.albertahealthservices.ca/assets/images/icons/icomoon/style.css">
+    <link type="text/css" rel="stylesheet" href="form-page-style.css">
+    
+    <script src="https://kit.fontawesome.com/0e3d55a771.js" crossorigin="anonymous"></script>
+    <script src="covid-assessment-form.js" crossorigin="anonymous"></script>    
+</head>
+<body>
+    
+<!--heading-->
+<div class="row">
+    <div class="col-sm-12 col-md-1">&nbsp;</div>
+    <div class="col-sm-12 col-md-11"><a href="https://www.albertahealthservices.ca" target="_blank"><img src="https://www.albertahealthservices.ca/images/Logos/ahs.png"><img style="margin-left: 30px; margin-top: 10px;"  src="https://www.albertahealthservices.ca/images/Vision.png"></a>
+    </div>
+</div>
+
+<hr style="border-top: 12px solid #1474C8;">
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <div class="body-copy">
+<h1 style="margin-top: 0px; margin-bottom: 30px; width: 100%; padding: 0.25em 0.25em 0.25em 0px; color: rgb(0, 94, 133); font-size: 2.0em;text-transform: initial;">You must immediately self-isolate. You may need to be tested for COVID-19.</h1>
+
+                <!-- Form Wrapper Start -->
+                <div id="contactForm">
+                        <p class="hilite"><strong>You must <a href="https://www.alberta.ca/self-isolation.aspx" target="_blank">self-isolate</a> until you receive further instruction.</strong></p>
+		<ul>
+		  <li>Do not visit a hospital, physician’s office, lab or healthcare facility without consulting Health Link (811) first.</li>
+		  <li>Don't go to any public places.</li>
+      <li>Stay at home, and don’t have any visitors.</li>
+		  <li>Don’t share personal items like dishes, utensils, or towels.</li>
+		  <li>Wash your hands often.</li>
+      <li>Avoid close contact with other people, especially those with chronic conditions, a compromised immune system, or seniors (over 65 years of age).</li>
+		</ul>
+		  <p>If your symptoms worsen, call 811. We are experiencing heavy call volumes and will get to your call as quickly as we can.</p>
+		  <p>Call 911 if you are seriously ill and need immediate medical attention. Inform them that you may have COVID-19.</p>
+      <p class="hilite"><strong>Please provide your contact information and healthcare number below. You will be contacted to confirm your symptoms and discuss next steps which may include a referral for testing.</strong></p>			
+		  <br>
+                  
+                    <!-- Form Start --> 
+                    <div class="quiz-form"> 
+                        <form>
+                            <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputFirstName">First Name*</label>
+                                <input type="text" autocomplete="off" class="form-control" id="inputFirstName" placeholder="First Name"  required data-field="FirstName">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputLastName">Last Name*</label>
+                                <input type="text" autocomplete="off" class="form-control" id="inputLastName" placeholder="Last Name"  required data-field="LastName">
+                            </div>
+                            </div>       
+                            <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="inputCity">City or Town you currently reside in*</label>
+                                <input type="text" autocomplete="off" class="form-control" id="inputCity" placeholder="City or Town" required data-field="City">
+                            </div>
+                            </div>
+                            <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputTelephone">Phone Number*</label>
+                                <input type="text" autocomplete="off" class="form-control" id="inputTelephone" placeholder="403-000-1111"  required data-field="PhoneNumber">
+                            </div> 
+                            <div class="form-group col-md-6">
+                                <label for="inputHealthcareNo">Alberta Healthcare Number</label>
+                                <input type="text" autocomplete="off" class="form-control" id="inputHealthcareNo" placeholder="11111-1111"  data-field="HealthCareNumber">
+                            </div> 
+                            </div>
+<div class="form-row">
+    <div class="form-group col-md-6 col-sm-12 col-xs-12">
+        <label for="inputDOB">Date of Birth*</label>
+		<input class="form-control" type="hidden" autocomplete="off" value="" id="inputDOB" required data-field="Other.DOB">
+
+        <div class="form-row">
+        <div class="form-group col-md-4 col-sm-4 col-xs-4">
+            <!--<input class="form-control" autocomplete="off" type="number" name="month" id="inputDOBMon" min="1" max="12"  placeholder="mm" required/>-->
+<select class="form-control" name="DOBMonth" autocomplete="off" id="inputDOBMon" required>
+<option value="">Month</option>
+<option value="January">January</option>
+<option value="February">February</option>
+<option value="March">March</option>
+<option value="April">April</option>
+<option value="May">May</option>
+<option value="June">June</option>
+<option value="July">July</option>
+<option value="August">August</option>
+<option value="September">September</option>
+<option value="October">October</option>
+<option value="November">November</option>
+<option value="December">December</option>
+</select>
+        </div>
+        <div class="form-group col-md-4 col-sm-4 col-xs-4">
+            <!--<input class="form-control" autocomplete="off" type="number" name="day" id="inputDOBday" min="1" max="31" placeholder="dd" required/>-->
+<select class="form-control" name="DOBDay" autocomplete="off" id="inputDOBday" required>
+<option value="">Day</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+<option value="6">6</option>
+<option value="7">7</option>
+<option value="8">8</option>
+<option value="9">9</option>
+<option value="10">10</option>
+<option value="11">11</option>
+<option value="12">12</option>
+<option value="13">13</option>
+<option value="14">14</option>
+<option value="15">15</option>
+<option value="16">16</option>
+<option value="17">17</option>
+<option value="18">18</option>
+<option value="19">19</option>
+<option value="20">20</option>
+<option value="21">21</option>
+<option value="22">22</option>
+<option value="23">23</option>
+<option value="24">24</option>
+<option value="25">25</option>
+<option value="26">26</option>
+<option value="27">27</option>
+<option value="28">28</option>
+<option value="29">29</option>
+<option value="30">30</option>
+<option value="31">31</option>
+</select>
+        </div>
+        <div class="form-group col-md-4 col-sm-4 col-xs-4">
+            <!--<input class="form-control" autocomplete="off" type="number" name="year" id="inputDOByear" min="1900" max="2020" placeholder="yyyy" required/>-->
+<select class="form-control" name="DOBYear" autocomplete="off" id="inputDOByear" required>
+<option value="">Year</option>
+</select>
+        </div>
+        </div>
+    </div>
+</div>                                                                
+
+							<!--
+                            <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <p><strong>Are you:</strong> (check all that apply)</p>
+                                <div class="checkbox">
+                                    <label><input type="checkbox" value="" id="ahsEmployee">an AHS employee?</label>
+                                </div>
+                                <div class="checkbox">
+                                    <label><input type="checkbox" value="" id="communityProvider">a community provider?</label>
+                                </div>
+                                <div class="checkbox disabled">
+                                    <label><input type="checkbox" value="" id="aboveSeventyFive">above 75 years old?</label>
+                                </div>
+                            </div>
+                            </div>-->                            
+                            <div class="form-row">
+                            <div class="form-group col-md-12">
+                                 <br>
+                                <p> AHS is a custodian with the authority to collect, use and disclose identifying health information, including healthcare numbers, under the <em>Health Information Act</em>. AHS is collecting and will use the information you provide in case we need to contact you to follow up about your health status. By submitting this form, you are acknowledging that you have been made aware of the purpose for which AHS will use and disclose your health information and authorizing its use and disclosure for this purpose. If you have questions about AHS’ authority or practices in relation to health information, please contact the Disclosure Help Line at 1.855.312.2265 or by email <a href="mailto:disclosure@ahs.ca">disclosure@ahs.ca</a>. Alternatively, you can email <a href="mailto:privacy@ahs.ca">privacy@ahs.ca</a>.</p>    
+                            </div>   
+                            </div>
+                            <div class="form-row">
+                            <div class="form-group col-md-12"><br>
+                                <button type="button" id="submitButton" class="btn btn-lg btn-block btn-secondary" disabled>Submit</button>
+                            </div>
+                            </div>
+                        </div>                           
+                    </div>
+                    <!-- Form End -->
+                </div>
+                <!-- Form Wrapper End -->
+
+            </div>
+        </div>
+    </div>
+</div>  
+
+<div class="well well-sm"  style="margin-top: 500px; background-color:#2A2E31; color: rgb(255,255,255); position:relative; width: 100%; ">
+    <div class="row">
+        <div class="col-sm-12">
+            <p style="margin-top: 10px;">&#169; Alberta Health Services 2020 <a style="color: rgb(255,255,255); text-decoration: none;" href="https://www.albertahealthservices.ca/about/Page635.aspx" target="_blank">Terms of Use</a> <a style="color: rgb(255,255,255); text-decoration: none;" href="https://www.albertahealthservices.ca/about/Page121.aspx" target="_blank">Privacy Statement</a></p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

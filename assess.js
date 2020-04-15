@@ -68,7 +68,7 @@ $(document).ready(function () {
     });*/
 
     $('.submitSixtyFivePlusForm').on('click', function () {
-        window.location.href = "publicexptest.aspx";
+        window.location.href = "pform.html";
     });
 
     /* ---------- FUNCTIONS ---------- */

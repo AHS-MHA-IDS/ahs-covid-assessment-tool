@@ -1,0 +1,35 @@
+
+# Logs and databases 
+*.log
+*.sql
+*.sqlite
+
+# OS generated files 
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+
+# Ignore Mac system files
+.DS_store
+
+# Ignore node_modules folder
+node_modules
+
+# Ignore all text files
+*.txt
+
+# Ignore files related to API keys
+.env
+
+# Ignore SASS config files
+.sass-cache
+
+
+# Ignore files
+_covid-mha-assessment-bottom.html
+_covid-mha-assessment-top.html

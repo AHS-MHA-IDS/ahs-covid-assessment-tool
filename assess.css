@@ -8,6 +8,14 @@ body {
   min-height:100%;
   font-size: 18px;
 }
+a.social-video {
+  display:inline-block;
+}
+.video-wrap {
+  display: block;
+  text-align: center;
+  padding:2em 0.5em;
+}
 .section-row {
   display: block;
   width: 100%;
@@ -100,6 +108,16 @@ h1 {
   text-transform: initial;
   color: rgb(0, 94, 133);
 }
+h1 a {
+  color:rgb(0, 94, 133);
+  text-decoration: underline;
+}
+h1 a:hover {
+  color:#0a2b2f;
+}
+h1 a:visited {
+  color:rgb(0, 94, 133);
+}
 .rec-title {
   text-align: center;
   text-justify: inter-word;
@@ -119,7 +137,7 @@ h1 {
   margin: 1em 0;
   font-weight: bold;
 }
-#q1, #q2, #q3, #q4, #q5, #q6, #q7, #q8, #q9, #q10, #q11, #q12, #q13, #q14, #q15 {
+#q1, #q2, #q3, #q4, #q5, #q6, #q7, #q8, #q9, #q10, #q11, #q12, #q13, #q14, #q15, .questions {
   display: none;
 }
 .container-fluid {
@@ -132,6 +150,9 @@ h1 {
   -webkit-animation-duration: 2s;
   -webkit-animation-delay: 1s;
   margin-bottom: 0.5em;
+}
+.container-fluid.questions a.btn:visited {
+  color: #fff;
 }
 .answers {
   -webkit-animation-duration: 2s;
@@ -187,6 +208,15 @@ h2 {
 .quiz-nav a {
   display: block;
   width: 100%;
+  color:#333;
+  text-decoration: none;
+}
+.quiz-nav a:hover {
+  color:#0a2b2f;
+  text-decoration: none;
+}
+.quiz-nav a:visited {
+  color:#333;
 }
 .footer-wrap {
   background-color: #2A2E31;
@@ -284,13 +314,18 @@ div#suiteBarDelta {
   padding-top: 0;
 }
 div#MSOZoneCell_WebPartWPQ2 {
-  display: none;
+  /*display: none;*/
 }
 div#MSOZoneCell_WebPartctl00_ctl39_g_054cf025_9a77_4ea1_9c00_1353f0fdfa4f {
   display: none;
 }
 
+h1.NavToFormfalse {
+    color: rgb(0, 94, 133);
+}
 
-
+.greyColor{
+color:#333;
+}
 
 

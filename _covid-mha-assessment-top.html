@@ -5,356 +5,167 @@
 
 
 <script>
-
-var ahsScript = $('<sc' +'ript>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({"gtm.start":new Date().getTime(),event:"gtm.js"});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src="https://www.googletagmanager.com/gtm.js?id="+i+dl;f.parentNode.insertBefore(j,f);})(window,document,"script","dataLayer","GTM-TGMJ8G5");</scr' + 'ipt>');
+var ahsScript = $('<sc' + 'ript>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({"gtm.start":new Date().getTime(),event:"gtm.js"});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src="https://www.googletagmanager.com/gtm.js?id="+i+dl;f.parentNode.insertBefore(j,f);})(window,document,"script","dataLayer","GTM-TGMJ8G5");</scr' + 'ipt>');
 $('head').append(ahsScript);
 
-$(document).ready(function(){
+$(document).ready(function () {
 
-var assessment = {
-    FirstName: '',
-    LastName: '',
-    PhoneNumber: '',
-    City: '',
-    HealthCareNumber: '',
-    Q1: null,
-    Q2: null,
-    Q3: null,
-    Q4: null,
-    Q5: null,
-    Q6: null,
-    Q7: null,
-    Q8: null,
-    Q9: null
-};
 
-// Start Submit and Validate 
-var submitted = false;
+    /* ---------- Global Variables for Storing Answers ---------- */
+    var prev = q1;
+    var stack = [];
 
-function submitAssessment() {
-                if (submitted) {
-                                return;
-                }
-                
-                submitted = true;
-                
-    //console.log('submitAssessment()...');
-    assessment.FirstName = $('#inputFirstName').val();
-    assessment.LastName = $('#inputLastName').val();
-    assessment.PhoneNumber = $('#inputTelephone').val();
-    assessment.City = $('#inputCity').val();
-    assessment.HealthCareNumber = $('#inputHealthcareNo').val();
 
-    //console.log(assessment);
+    /* ---------- Question Pages ---------- */
+    var q1 = $("#q1"),
+        q2 = $("#q2"),
+        q3 = $("#q3"),
+        q9 = $("#q9");
 
-    $.ajax({
-        type: "POST",
-        data: JSON.stringify(assessment),
-        url: "/COVIDServicePOST/api/assessment",
-        contentType: "application/json",
-        success: function (data) { successFunction(data); },
-        error: function (data) { errorFunction(data); }
+    /* ---------- Recommendation Pages ---------- */
+    var emergencyInfo = $("#emergencyInfo"),
+        callNurse = $("#callNurse"),
+        nResult15 = $("#nResult15"),
+        nResult15a = $("#nResult15a"),
+        nResult16 = $("#nResult16"),
+        nResult16a = $("#nResult16a"),
+        nResult17 = $("#nResult17"),
+        nResult18 = $("#nResult18"),
+        nResult18a = $("#nResult18a"),
+        nResult19 = $("#nResult19"),
+        contactForm = $("#contactForm");
+
+    /* ---------- Arrays of Question/Rec pages ---------- */
+    var qArray = [q1, q2, q3, q9];
+    var rArray = [
+        emergencyInfo,
+        callNurse,
+        nResult15,
+        nResult15a,
+        nResult16,
+        nResult16a,
+        nResult17,
+        nResult18,
+        nResult18a,
+        nResult19,
+        contactForm
+    ];
+
+    /* ---------- BUTTON VARIABLES ---------- */
+    var backBtn = $("#backBtn");
+    var resetBtn = $("#resetBtn");
+
+    // event handler for back and reset buttons 
+    $("body").on("click", "#backBtn", function () {
+        goBack();
     });
-};
 
-function successFunction(data) {
-    //console.log('successFunction()...');
-    //console.log(data);
-    window.location = "/Journey/COVID-19/Pages/Success.aspx";
-};
+    $("body").on("click", "#resetBtn", function () {
+        doReset();
+    });
 
-function errorFunction(data) {
-    //console.log('errorFunction()...');
-    //console.log(data);
-    window.location = "/Journey/COVID-19/Pages/Error.aspx";
-};
+    // Form submit 
+    $('.submitFollowupForm').on('click', function () {
+        window.location.href = "Covid-assessment-follow-up.aspx";
+    });
 
-$('#inputFirstName').on('keyup change', validateInputs);
-$('#inputLastName').on('keyup change', validateInputs);
-$('#inputTelephone').on('keyup change', validateInputs);
-$('#inputCity').on('keyup change', validateInputs);
-$('#inputHealthcareNo').on('keyup change', validateInputs);
+    $('.submitEssentialRolesForm').on('click', function () {
+        window.location.href = "PESAssessForm.aspx";
+    });
 
-function isBlank(str) {
-    return (!str || /^\s*$/.test(str));
-};
+    /*$('.submitSixtyFivePlusForm').on('click', function () {
+        window.location.href = "65plustesting.aspx";
+    });*/
 
-function validateInputs() {
-                var valid = !isBlank($('#inputFirstName').val()) &&
-                                !isBlank($('#inputLastName').val()) &&
-                                !isBlank($('#inputTelephone').val()) &&
-                                !isBlank($('#inputCity').val()) &&
-                                !isBlank($('#inputHealthcareNo').val());
-                
-                $('#submitButton').prop("disabled", !valid);
-}
-// End Submit and Validate
+    $('.submitSixtyFivePlusForm').on('click', function () {
+        window.location.href = "publicexptest.aspx";
+    });
 
-function successFunction(data) {
-    //console.log('successFunction()...');
-    //console.log(data);
-    window.location = "/Journey/COVID-19/Pages/Success.aspx";
-};
+    /* ---------- FUNCTIONS ---------- */
+    init();
 
-function errorFunction(data) {
-    //console.log('errorFunction()...');
-    //console.log(data);
-    window.location = "/Journey/COVID-19/Pages/Error.aspx";
-};
+    function init() {
+        // reveal the first question/buttons
+        reveal(q1);
+    }
 
+    function disable(x) {
+        // hide the element on the page via fadeOut 
+        x.fadeOut(200);
+    }
 
-/* ---------- Global Variables for Storing Answers ---------- */ 
-var prev = q1;
-var stack = [];
+    function reveal(x) {
+        x.delay(300).fadeIn();
+    }
 
+    function goBack() {
+        // hide all questions elements on the page 
+        for (var i = 0; i < qArray.length; i++) {
+            disable(qArray[i]);
+        }
+        // hide all answers elements on the page 
+        for (var i = 0; i < rArray.length; i++) {
+            disable(rArray[i]);
+        }
 
-/* ---------- Question Pages ---------- */ 
-var q1 = $("#q1"),
-  q2 = $("#q2"),
-  q3 = $("#q3"),
-  q4 = $("#q4"),
-  q5 = $("#q5"),
-  q6 = $("#q6"),
-  q7 = $("#q7"),
-  q8 = $("#q8"),
-  q9 = $("#q9");
+        // state management for returning to specified questions in flow 
+        reveal(stack.pop());
+    }
 
-/* ---------- Recommendation Pages ---------- */ 
-var emergencyInfo = $("#emergencyInfo"),
-  callNurse = $("#callNurse"),
-  nResult15 = $("#nResult15"),
-  nResult15a = $("#nResult15a"),
-  nResult16 = $("#nResult16"),
-  nResult16a = $("#nResult16a"),
-  nResult17 = $("#nResult17"),
-  nResult18 = $("#nResult18"),
-  nResult18a = $("#nResult18a"),
-  selfIsolate = $("#selfIsolate"),
-  contactForm = $("#contactForm");
+    function doReset() {
+        location.reload();
+    }
 
-/* ---------- Arrays of Question/Rec pages ---------- */
-var qArray = [q1, q2, q3, q4, q5, q6, q7, q8, q9];
-var rArray = [
-  nResult15,
-  nResult15a,
-  nResult16,
-  nResult16a,
-  nResult17,
-  nResult18,
-  nResult18a,
-  contactForm,
-  callNurse,
-  emergencyInfo,
-  selfIsolate
-];
+    /* ---------- QUESTION YES/NO BUTTON ACTIONS ---------- */
+    /* q1 btns */
+    $("#emergencyCheckYes").click(function () {
+        prev = q1;
+        disable(q1);
+        reveal(emergencyInfo);
+        stack.push(q1);
+    });
+    $("#emergencyCheckNo").click(function () {
+        prev = q1;
+        disable(q1);
+        reveal(q2);
+        stack.push(q1);
+    });
 
-/* ---------- BUTTON VARIABLES ---------- */
-var backBtn = $("#backBtn");
-var resetBtn = $("#resetBtn");
+    /* q2 btns  */
+    $("#emergencyCheckTwoYes").click(function () {
+        prev = q1;
+        disable(q2);
+        reveal(callNurse);
+        stack.push(q2);
+    });
+    $("#emergencyCheckTwoNo").click(function () {
+        prev = q2;
+        disable(q2);
+        reveal(q3);
+        stack.push(q2);
+    });
 
-/* event handler for back and reset buttons */
-$("body").on("click", "#backBtn", function() {
-  goBack();
+    /* q2 btns  */
+    $("#testingRequiredNo").click(function () {
+        prev = q3;
+        disable(q3);
+        reveal(q9);
+        stack.push(q3);
+    });
+
+    /* q9 btns */
+    $("#generalReturnTravelYes").click(function () {
+        prev = q9;
+        disable(q9);
+        reveal(nResult16a);
+        stack.push(q9);
+    });
+    $("#generalReturnTravelNo").click(function () {
+        prev = q9;
+        disable(q9);
+        reveal(nResult18);
+        stack.push(q9);
+    });
+
 });
-
-$("body").on("click", "#resetBtn", function() {
-  doReset();
-});
-
-/* Form submit */
-$('#submitButton').on('click', function() {
-    submitAssessment();
-});
-
-
-/* ---------- FUNCTIONS ---------- */
-init();
-
-function init() {
-  /* reveal the first question/buttons */
-  reveal(q1);
-}
-
-function disable(x) {
-  /* hide the element on the page via fadeOut */
-  x.fadeOut(200);
-}
-
-function reveal(x) {
-  x.delay(300).fadeIn();
-}
-
-function goBack() {
-  /* hide all questions elements on the page */
-  for (var i = 0; i < qArray.length; i++) {
-    disable(qArray[i]);
-  }
-  /* hide all answers elements on the page */
-  for (var i = 0; i < rArray.length; i++) {
-    disable(rArray[i]);
-  }
-
-  reveal(stack.pop());
-}
-
-function doReset() {
-  location.reload();
-}
-
-/* ---------- QUESTION YES/NO BUTTON ACTIONS ---------- */
- 
-/* q1 btns */
-$("#emergencyCheckYes").click(function() {
-  prev = q1;
-  disable(q1);
-  reveal(emergencyInfo);
-  stack.push(q1);
-});
-$("#emergencyCheckNo").click(function() {
-  prev = q1;
-  disable(q1);
-  reveal(q2);
-  stack.push(q1);
-});
-
-/* q2 btns  */
-$("#emergencyCheckTwoYes").click(function() {
-  prev = q1;
-  disable(q2);
-  reveal(callNurse);
-  stack.push(q2);
-});
-$("#emergencyCheckTwoNo").click(function() {
-  prev = q2;
-  disable(q2);
-  reveal(q3);
-  stack.push(q2);
-});
-
-/* q3 btns 
-$("#testingRequiredYes").click(function() {
-  prev = q3;
-  disable(q3);
-  reveal(q4);
-  stack.push(q3);
-});
-$("#testingRequiredNo").click(function() {
-  prev = q3;
-  disable(q3);
-  reveal(q8);
-  stack.push(q3);
-});
- */
-
-/* q3 btns - NEW  */
-$("#testingRequiredYes").click(function() {
-  prev = q3;
-  disable(q3);
-  reveal(selfIsolate);
-  stack.push(q3);
-});
-$("#testingRequiredNo").click(function() {
-  prev = q3;
-  disable(q3);
-  reveal(q8);
-  stack.push(q3);
-});
-
-/* Intercept Self Isolation */
-$("#selfIsolateContinuation").click(function() {
-  prev = selfIsolate;
-  disable(selfIsolate);
-  reveal(q4);
-  //stack.push(selfIsolate); // Going back to Q3 and Prev state is Q3 not Self Isolation 
-});
-/* Intercept Self Isolation */
-
-
-/* q4 btns */
-$("#exposedYes").click(function() {
-  prev = q4;
-  disable(q4);
-  reveal(contactForm);
-  stack.push(q4);
-});
-$("#exposedNo").click(function() {
-  prev = q4;
-  disable(q4);
-  reveal(q5);
-  stack.push(q4);
-});
-
-/* q5 btns */
-$("#travelWithinCanadaYes").click(function() {
-  prev = q5;
-  disable(q5);
-  reveal(contactForm);
-  stack.push(q5);
-});
-$("#travelWithinCanadaNo").click(function() {
-  prev = q5;
-  disable(q5);
-  reveal(q6);
-  stack.push(q5);
-});
-
-/* q6 btns */
-$("#travelOutsideCanadaYes").click(function() {
-  prev = q6;
-  disable(q6);
-  reveal(q7);
-  stack.push(q6);
-});
-$("#travelOutsideCanadaNo").click(function() {
-  prev = q6;
-  disable(q6);
-  reveal(nResult15);
-  stack.push(q6);
-});
-
-/* q7 btns */
-$("#contactedPersonTravelledYes").click(function() {
-  prev = q6;
-  disable(q7);
-  reveal(contactForm);
-  stack.push(q7);
-});
-$("#contactedPersonTravelledNo").click(function() {
-  prev = q7;
-  disable(q7);
-  reveal(nResult15a);
-  stack.push(q7);
-});
-
-/* q8 btns */
-$("#travelCloseContactConfirmedYes").click(function() {
-  prev = q7;
-  disable(q8);
-  reveal(nResult16);
-  stack.push(q8);
-});
-$("#travelCloseContactConfirmedNo").click(function() {
-  prev = q8;
-  disable(q8);
-  reveal(q9);
-  stack.push(q8);
-});
-
-/* q9 btns */
-$("#generalReturnTravelYes").click(function() {
-  prev = q9;
-  disable(q9);
-  reveal(nResult16a);
-  stack.push(q9);
-});
-$("#generalReturnTravelNo").click(function() {
-  prev = q9;
-  disable(q9);
-  reveal(nResult18);
-  stack.push(q9);
-});
-
-
-
-  });
 </script>
